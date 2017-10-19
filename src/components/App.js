@@ -16,7 +16,7 @@ class App extends Component {
 		};
 
 		this.addFish = this.addFish.bind(this);
-		this.loadSamples = this.loadSamples(this);
+		this.loadSamples = this.loadSamples.bind(this);
 	}
 
 	addFish(fish) {
@@ -28,9 +28,11 @@ class App extends Component {
 	}
 
 	loadSamples() {
+		console.log("LOADING FISHES");
 		this.setState({
 			fishes: sampleFishes
 		});
+		console.log(this.state);
 	}
 
 	render() {
@@ -41,7 +43,7 @@ class App extends Component {
 					<ul className="list-of-fishes">
 						{Object.keys(this.state.fishes).map(key => (
 							<Fish key={key} details={this.state.fishes[key]} />
-						)}
+						))}
 					</ul>
 				</div>
 				<Order />
