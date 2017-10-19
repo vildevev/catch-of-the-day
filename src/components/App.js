@@ -5,6 +5,7 @@ import Order from "./Order";
 import Inventory from "./Inventory";
 import Fish from "./Fish";
 import sampleFishes from "../sample-fishes";
+import base from "../base";
 
 class App extends Component {
 	constructor(props) {
@@ -20,6 +21,16 @@ class App extends Component {
 		this.addToOrder = this.addToOrder.bind(this);
 	}
 
+	componentWillMount() {
+		this.ref = base.syncState(`${this.props.params.storeId}/fishes`, {
+			context: this,
+			state: "fishes"
+		});
+	}
+
+	componentWillUnmount() {
+		base.removeBinding(this.ref);
+	}
 	addFish(fish) {
 		const fishes = { ...this.state.fishes };
 		const timestamp = Date.now();
