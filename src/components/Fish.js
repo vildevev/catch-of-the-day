@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { formatPrice } from "../helpers";
 
 class Fish extends Component {
@@ -24,5 +24,11 @@ class Fish extends Component {
 		);
 	}
 }
+
+Fish.propTypes = {
+	details: PropTypes.object.isRequired,
+	index: PropTypes.string.isRequired,
+	addToOrder: PropTypes.func.isRequired
+};
 
 export default Fish;
