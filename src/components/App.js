@@ -15,13 +15,6 @@ class App extends Component {
 			fishes: {},
 			order: {}
 		};
-
-		this.addFish = this.addFish.bind(this);
-		this.loadSamples = this.loadSamples.bind(this);
-		this.addToOrder = this.addToOrder.bind(this);
-		this.removeFromOrder = this.removeFromOrder.bind(this);
-		this.updateFish = this.updateFish.bind(this);
-		this.removeFish = this.removeFish.bind(this);
 	}
 
 	componentWillMount() {
@@ -52,44 +45,44 @@ class App extends Component {
 		);
 	}
 
-	addFish(fish) {
+	addFish(fish) = () => {
 		const fishes = { ...this.state.fishes };
 		const timestamp = Date.now();
 
 		fishes[`fish-${timestamp}`] = fish;
 		this.setState({ fishes });
-	}
+	};
 
-	updateFish(key, updatedFish) {
+	updateFish(key, updatedFish) = () => {
 		const fishes = { ...this.state.fishes };
 		fishes[key] = updatedFish;
 		this.setState({ fishes });
-	}
+	};
 
-	removeFish(key) {
+	removeFish(key) = () => {
 		const fishes = { ...this.state.fishes };
 		fishes[key] = null;
 		this.setState({ fishes });
-	}
+	};
 
-	loadSamples() {
+	loadSamples() = () => {
 		this.setState({
 			fishes: sampleFishes
 		});
-	}
+	};
 
-	addToOrder(key) {
+	addToOrder(key) = () => {
 		const order = { ...this.state.order };
 		order[key] = order[key] + 1 || 1;
 
 		this.setState({ order });
-	}
+	};
 
-	removeFromOrder(key) {
+	removeFromOrder(key) = () => {
 		const order = { ...this.state.order };
 		delete order[key];
 		this.setState({ order });
-	}
+	};
 
 	render() {
 		return (

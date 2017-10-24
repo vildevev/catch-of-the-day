@@ -3,11 +3,7 @@ import { formatPrice } from "../helpers";
 import CSSTransitionGroup from "react-addons-css-transition-group";
 
 class Order extends Component {
-	constructor(props) {
-		super(props);
-		this.renderOrder = this.renderOrder.bind(this);
-	}
-	renderOrder(key) {
+	renderOrder(key) = () => {
 		const fish = this.props.fishes[key];
 		const count = this.props.order[key];
 		const removeButton = (
@@ -39,7 +35,7 @@ class Order extends Component {
 				<span className="price">{formatPrice(count * fish.price)}</span>
 			</li>
 		);
-	}
+	};
 	render() {
 		const orderIds = Object.keys(this.props.order);
 		const total = orderIds.reduce((prevTotal, key) => {
